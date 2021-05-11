@@ -7,13 +7,13 @@
     "typescript": "^4.2.4"
   },
   "scripts": {
-     "preex01": "npx tsc",
-     "ex01": "node ./dist/ex01",
-     "preex02": "npx tsc",
-     "ex02": "node ./dist/ex02",
-     "preex03": "npx tsc",
-     "ex03": "node ./dist/ex03",
-     "preex04": "npx tsc",
-     "ex04": "node ./dist/ex04"
+    "preex01": "npx tsc",
+    "ex01": "node ./dist/ex01",
+    "preex02": "npx tsc",
+    "ex02": "node ./dist/ex02",
+    "preex03": "npx tsc",
+    "ex03": "node ./dist/ex03",
+    "preex04": "npx tsc",
+    "ex04": "node ./dist/ex04"
   }
 }

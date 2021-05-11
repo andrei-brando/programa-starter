@@ -16,17 +16,21 @@ class Vendedor {
     }
 }
 class Pagamento {
-    constructor(pagamento) {
-        this._valor = 0;
-        this._dataPagamento = '';
+    constructor(pagamento, valor, dataPagamento) {
+        this.valor = 0;
         this.cliente = pagamento.cliente;
         this.vendedor = pagamento.vendedor;
+        this.valor = valor;
+        this.dataPagamento = dataPagamento;
     }
-    fazerPagamento(valorAPagar) {
+    fazerPagamento(valor) {
+        console.log('Pagamento efetivado');
     }
-    atualizarValor() {
+    atualizarValor(valor) {
+        this.valor = valor;
     }
     recuperarValor() {
+        return this.valor;
     }
 }
 const cliente1 = new Cliente({
@@ -42,4 +46,7 @@ const vendedor1 = new Vendedor({
 const pagto = new Pagamento({
     cliente: cliente1,
     vendedor: vendedor1,
-});
+}, 500, new Date());
+pagto.atualizarValor(1100);
+pagto.fazerPagamento(400);
+pagto.recuperarValor();
