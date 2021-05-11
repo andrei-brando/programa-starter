@@ -1,0 +1,47 @@
+* {
+   margin: 0;
+   background: #ccc;
+}
+
+html, body {
+   height: 100%;
+}
+
+body {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: flex-end;
+}
+
+.content {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+
+}
+
+.square {
+   height: 100px;
+   width: 100px;
+   border: 2px solid black;
+   margin: 10px;
+}
+
+.circle {
+   height: 100px;
+   width: 100px;
+   border: 2px solid black;
+   border-radius: 100%;
+   margin: 10px;
+}
+
+.orange {
+   background-color: orange;
+}
+
+.blue {
+   background-color: cadetblue;
+}
+

@@ -1,0 +1,13 @@
+{
+  "name": "semana12-1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "predev": "npx tsc",
+    "dev": "node ./dist/index"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}

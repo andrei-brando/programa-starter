@@ -1,0 +1,97 @@
+* {
+   margin: 0;
+   font-family: 'Arial';
+}
+
+.container {
+   background: #ccc;
+   display: flex;
+   height: 250px;
+}
+
+.item {
+   padding: 20px;
+   margin: 5px;
+   background: black;
+   color: #fff;
+}
+
+.container1 {
+   flex-direction: column-reverse;
+}
+
+.container2 {
+   flex-wrap: wrap-reverse;
+}
+
+.container2 .item {
+   width: 40%;
+}
+
+.container3 {
+   flex-flow: row wrap;
+}
+
+.container3 .item {
+   width: 40%;
+}
+
+.container4 {
+   justify-content: space-evenly;
+}
+
+.container5 {
+   justify-content: center;
+   align-items: center;
+}
+
+.container5 .item {
+   width: 80px;
+   height: 80px;
+}
+
+.container6, .container7, .container8, .container9, .container10, .container11 {
+   flex-direction: row;
+}
+
+.container6 .item-01 {
+   order: 3;
+}
+
+.container7 .item {
+   width: 80px;
+   height: 80px;
+}
+
+.container7 .item-01 {
+   align-self: center;
+}
+
+.container8 .item-02 {
+   flex-grow: 4;
+}
+
+.container9 .item {
+   flex-basis: 100px;
+}
+
+.container9 .item-02 {
+   flex-basis: 200px;
+}
+
+.container10 .item {
+   flex-basis: 300px;
+   flex-shrink: 1;
+}
+
+.container10 .item-02 {
+   flex-shrink: 3;
+}
+
+.container11 .item {
+   flex: 1 1 200px;
+}
+
+.container11 .item-02 {
+   flex-shrink: 3;
+}

@@ -1,0 +1,30 @@
+* {
+   margin: 0;
+   padding: 0;
+   font-family: 'Arial';
+   color: white;
+}
+
+header {
+   background-color: cadetblue;
+   height: 50px;
+   padding: 0 10px 0 10px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+
+header h1 {
+   cursor: pointer;
+}
+
+header img {
+   height: 40px;
+   width: 40px;
+   cursor: pointer;
+}
+
+.none {
+   display: none;
+}

@@ -1,0 +1,23 @@
+.bg-blue {
+   height: 60px;
+   background-color: blue;
+}
+
+.bg-green {
+   height: 60px;
+   background-color: green;
+}
+
+.bg-red {
+   height: 60px;
+   background-color: red;
+}
+
+.bg-black {
+   height: 60px;
+   background-color: black;
+}
+
+.font-grey {
+   color: #ccc;
+}

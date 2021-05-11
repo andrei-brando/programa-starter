@@ -1,0 +1,11 @@
+* {
+   margin: 0;
+   padding: 0;
+}
+
+#form-group input,
+button {
+   height: 30px;
+   width: 200px;
+   margin: 10px;
+}

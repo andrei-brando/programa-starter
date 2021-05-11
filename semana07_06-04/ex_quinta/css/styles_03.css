@@ -1,0 +1,51 @@
+html, body {
+   height: 100%;
+}
+
+.bg-blue, button {
+   background: #0a80ec;
+}
+
+.bg-grey {
+   background: #ccc;
+}
+
+.header {
+   height: 8vh;
+}
+
+.content {
+   height: 90vh;
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   height: 500px;
+}
+
+.content-buttons {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+button {
+   color: white;
+   border: none;
+   padding: 10px;
+   width: 350px;
+}
+
+button:nth-child(2) {
+   margin-left: 10px;
+}
+
+.or {
+   align-self: center;
+}
+
+input {
+   height: 50px;
+}

@@ -1,0 +1,17 @@
+.bg-black {
+   border: 1px solid black;
+   height: 80px;
+   text-align: center;
+}
+
+.bg-grey {
+   background: #ccc;
+   height: 80px;
+   text-align: center;
+}
+
+.bg-red {
+   background: red;
+   height: 80px;
+   text-align: center;
+}

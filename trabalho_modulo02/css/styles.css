@@ -1,0 +1,73 @@
+.bg-orange {
+   height: 100vh;
+   background-color: blueviolet;
+   color: white;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.avatar {
+   height: 20vh;
+   width: 20vh;
+   position: relative;
+   border-radius: 100px;
+   margin-bottom: 10px;
+}
+
+img {
+   margin: 10px;
+   height: 50px;
+   width: 50px;
+}
+
+.teste {
+   height: 200px !important;
+   width: 200px;
+}
+
+.height30 {
+   height: 30%;
+}
+
+.sobre, .conhec, .objetivo {
+   height: 40%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+h1, h3 {
+   display: inline;
+}
+
+h2 {
+   cursor: pointer;
+}
+
+h2:hover {
+   color: cadetblue;
+}
+
+p {
+   font-size: 24px;
+}
+
+.color-org {
+   color: orange;
+}
+
+.hidden {
+   display: none;
+}
+
+.conhec, .objetivo {
+   padding: 10px;
+   justify-content: center;
+}
+
+.social-netw {
+   display: flex;
+   flex-direction: row;
+}

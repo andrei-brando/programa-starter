@@ -1,0 +1,13 @@
+{
+  "name": "semana10.2-typescript-oo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  },
+  "scripts": {
+    "predev": "npx tsc",
+    "dev": "node ./dist/index.js"
+  }
+}
