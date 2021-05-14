@@ -13,5 +13,5 @@ mkdir src
 
 no package.json
 "scripts": {
-     "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts", *isso vai rodar nosso arquivo index.ts e vai ficar sempre escutando e transpilando modificações*
+     "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts" *isso vai rodar nosso arquivo index.ts e vai ficar sempre escutando e transpilando modificações*
   }
