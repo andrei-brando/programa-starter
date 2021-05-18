@@ -205,10 +205,6 @@ app.post('/adicionar-pessoa', (req: Request, res: Response) => {
 });
 
 // #12
-function transformIntoAscII(word: string, qtdSoma: number) {
-   let newWord = '';
-}
-
 app.post('/adicionar-time', (req: Request, res: Response) => {
    const { nome, ano, estado } = req.body;
 
@@ -222,15 +218,35 @@ app.post('/adicionar-time', (req: Request, res: Response) => {
    const arrayString: Array<string> = ano.split('');
    let anoInNumber = arrayString.map((value) => parseInt(value)).reduce((a, b) => a + b);
 
-   let nomeAsc = transformIntoAscII(nome, anoInNumber);
+   let arrayAsc: Array<any> = nome.split('');
+   arrayAsc = arrayAsc.map((value:string) => {
+      let contador = 0;
+      let novoAsc = value.charCodeAt(0);
 
+      for (let i = 0; i < anoInNumber; i++) {
+         novoAsc++;
+         
+         if (novoAsc > 90) {
+            novoAsc = 65;
+         }
+      }
+
+      return novoAsc;
+   });
+
+   let ascToNumber = arrayAsc.map((e:number) => String.fromCharCode(e)).toString();
+   
+   for (let i = 0; i < ascToNumber.length; i++) {
+      ascToNumber = ascToNumber.replace(',', '');
+   }
+   
    return res.status(200).json({
       sucess: true,
       data: {
          anoInNumber: anoInNumber,
-         nomeAsc: nomeAsc,
+         nomeAsc: ascToNumber,
       },
-      message: 'Passou'
+      message: 'Graças a Deus, consegui'
    });
 });
 
