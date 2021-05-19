@@ -215,15 +215,41 @@ app.post('/adicionar-time', (req: Request, res: Response) => {
       });
    }
 
-   // a fazer
+   const arrayString: Array<string> = ano.toString().split('');
+   let anoInNumber = arrayString.map((value) => parseInt(value)).reduce((a, b) => a + b);
+
+   // let nomeAsc = transformIntoAscII(nome, anoInNumber);
+
+   // let nomeAsc = nome.charCodeAt(0);
+   let arrayAsc: Array<any> = nome.toUpperCase().split('');
+   arrayAsc = arrayAsc.map((value:string) => {
+      let contador = 0;
+      let novoAsc = value.charCodeAt(0);
+
+      for (let i = 0; i < anoInNumber; i++) {
+         novoAsc++;
+         
+         if (novoAsc > 90) {
+            novoAsc = 65;
+         }
+      }
+
+      return novoAsc;
+   });
+
+   let ascToNumber = arrayAsc.map((e:number) => String.fromCharCode(e)).toString();
+   
+   for (let i = 0; i < ascToNumber.length; i++) {
+      ascToNumber = ascToNumber.replace(',', '');
+   }
    
    return res.status(200).json({
       sucess: true,
       data: {
-         // anoInNumber: anoInNumber,
-         // nomeAsc: ascToNumber,
+         anoInNumber: anoInNumber,
+         nomeAsc: ascToNumber,
       },
-      message: 'Graças a Deus, consegui'
+      message: 'Graças a Deus consegui'
    });
 });
 
