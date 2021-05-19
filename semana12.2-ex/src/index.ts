@@ -220,7 +220,6 @@ app.post('/adicionar-time', (req: Request, res: Response) => {
 
    let arrayAsc: Array<any> = nome.split('');
    arrayAsc = arrayAsc.map((value:string) => {
-      let contador = 0;
       let novoAsc = value.charCodeAt(0);
 
       for (let i = 0; i < anoInNumber; i++) {
