@@ -218,9 +218,6 @@ app.post('/adicionar-time', (req: Request, res: Response) => {
    const arrayString: Array<string> = ano.toString().split('');
    let anoInNumber = arrayString.map((value) => parseInt(value)).reduce((a, b) => a + b);
 
-   // let nomeAsc = transformIntoAscII(nome, anoInNumber);
-
-   // let nomeAsc = nome.charCodeAt(0);
    let arrayAsc: Array<any> = nome.toUpperCase().split('');
    arrayAsc = arrayAsc.map((value:string) => {
       let contador = 0;
