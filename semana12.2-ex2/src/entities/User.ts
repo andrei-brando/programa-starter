@@ -1,4 +1,4 @@
-import Transaction from '../src/Transaction';
+import Transaction from '../entities/Transaction';
 
 class User {
    public id: number;
