@@ -18,8 +18,6 @@ routes.post('/users', (req: Request, res: Response, next: NextFunction) => {
       });
    }
 
-   console.log('POST - /users');
-
    next();
 }, (req: Request, res: Response) => {
    const { name, cpf, email, age } = req.body;
@@ -49,10 +47,7 @@ routes.post('/users', (req: Request, res: Response, next: NextFunction) => {
    });
 });
 
-routes.get('/users', (req: Request, res: Response, next: NextFunction) => {
-   console.log('GET - /users');
-   next();
-}, (req: Request, res: Response) => {
+routes.get('/users', (req: Request, res: Response) => {
    return res.status(200).json({
       sucess: true,
       data: users,
@@ -69,8 +64,6 @@ routes.get('/users/:id', (req: Request, res: Response, next: NextFunction) => {
          message: 'Todos os parametros devem ser informados'
       });
    }
-
-   console.log('GET - /users/:id');
 
    next();
 }, (req: Request, res: Response) => {
@@ -102,8 +95,6 @@ routes.put('/users/:id', (req: Request, res: Response, next: NextFunction) => {
          message: 'Todos os parametros devem ser informados, tanto na rota quando no body'
       });
    }
-
-   console.log('PUT - /users/:id');
 
    next();
 }, (req: Request, res: Response) => {
@@ -144,8 +135,6 @@ routes.delete('/users/:id', (req: Request, res: Response, next: NextFunction) =>
          message: 'Dados inválidos'
       });
    }
-
-   console.log('DELETE - /users/:id');
 
    next();
 }, (req: Request, res: Response) => {

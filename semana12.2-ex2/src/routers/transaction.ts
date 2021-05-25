@@ -23,8 +23,6 @@ routes.post('/user/:userId/transactions', (req: Request, res: Response, next: Ne
       });
    }
 
-   console.log('POST - /user/:userId/transactions');
-
    next();
 }, (req: Request, res: Response) => {
    const { userId } = req.params;
@@ -64,8 +62,6 @@ routes.get('/user/:userId/transactions', (req: Request, res: Response, next: Nex
          message: 'Todos os parametros devem ser informados'
       });
    }
-
-   console.log('GET - /user/:userId/transactions');
 
    next();
 }, (req: Request, res: Response) => {
@@ -111,8 +107,6 @@ routes.get('/user/:userId/transactions/:id', (req: Request, res: Response, next:
       });
    }
 
-   console.log('GET - /user/:userId/transactions/:id');
-
    next();
 }, (req: Request, res: Response) => {
    const { userId, id } = req.params;
@@ -145,8 +139,6 @@ routes.put('/user/:userId/transactions/:id', (req: Request, res: Response, next:
          message: 'Todos os parametros devem ser informados'
       });
    }
-
-   console.log('PUT - /user/:userId/transactions/:id');
    
    next();
 },(req: Request, res: Response) => {
@@ -196,8 +188,6 @@ routes.delete('/user/:userId/transactions/:id', (req: Request, res: Response, ne
          message: 'Todos os parametros devem ser informados'
       });
    }
-
-   console.log('DELETE - /user/:userId/transactions/:id');
    
    next();
 },(req: Request, res: Response) => {
