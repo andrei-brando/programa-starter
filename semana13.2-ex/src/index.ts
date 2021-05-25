@@ -1,14 +1,11 @@
 // #1
-const ex = (valor: number) => {
+function ex001() {
    return new Promise((resolve, reject) => {
-      if (valor != 3) {
-         reject('deu errado');
-      }
-      resolve('deu certo');
-   })
+      resolve(3);
+   });
 }
 
-//ex(5).then(result => console.log(result)).catch(error => console.log(error));
+// ex001().then(result => console.log(result));
 
 // #2
 const ex02 = (value: string) => {
@@ -20,25 +17,65 @@ const ex02 = (value: string) => {
    })
 }
 
-//ex02('Olá').then(result => console.log(result)).catch(error => console.log(error));
-
-// #3
-const myPromisse = (itShouldResolve: boolean) => {
-   return new Promise((resolve, reject) => {
-      if (!itShouldResolve) {
-         reject('Promisse 03 rejeitada');
-      }
-      resolve('Promisse 03 deu certo');
+function ex002() {
+   return new Promise<void>((resolve, reject) => {
+      reject('oi');
    })
 }
 
-// myPromisse(false).then(result => console.log(result)).catch(error => console.log(error));
+//ex002().then(result => console.log(result)).catch(error => console.log(error));
 
-function soma(a: number, b: number) {
-   let total = a + b;
-   if (total % 2 != 0) {
-      total++;
-   }
-   return total;
+// #3
+function myPromisse(itShouldResolve: boolean) {
+   return new Promise((resolve, reject) => {
+      if (!itShouldResolve) {
+         reject('Promisse rejeitada');
+      }
+      resolve('Promisse deu certo');
+   });
 }
 
+//myPromisse(false).then(result => console.log(result)).catch(error => console.log(error));
+
+// #4
+function soma(a: number, b: number) {
+   return new Promise((resolve, reject) => {
+      const resultado = a + b;
+
+      if (resultado % 2 === 0) {
+         resolve('Par');
+      } else {
+         reject('Impar');
+      }
+   })
+}
+
+//soma(2, 2).then(r => console.log(r)).catch(e => console.log(e));
+
+// #5
+function job() {
+   return new Promise(function (resolve, reject) {
+      reject();
+   });
+}
+let promise = job();
+
+promise
+   .then(function () {
+      console.log('Success 1');
+   })
+   .then(function () {
+      console.log('Success 2');
+   })
+   .then(function () {
+      console.log('Success 3');
+   })
+   .catch(function () {
+      console.log('Error 1');
+   })
+   .then(function () {
+      console.log('Success 4');
+   });
+
+// Vai retornar -> Error 1
+//                 Sucess 4
