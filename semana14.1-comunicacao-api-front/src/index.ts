@@ -1,6 +1,7 @@
 import express, { Request, response, Response } from 'express';
 import { v4 as uuidGenerator } from 'uuid';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 const app = express();
 
@@ -8,8 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get('/', () => {
-   return response.send('rodando');
+dotenv.config();
+
+app.get('/', (req: Request, res: Response) => {
+   return res.send('rodando');
 });
 
 const alunos: Array<any> = [
@@ -128,6 +131,8 @@ app.delete('/growdevers/:id', (req: Request, res: Response) => {
    });
 });
 
-app.listen(8080, () => {
-   console.log('rodando na porta 8080');
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+   console.log(`rodando na porta ${port}`);
 });
