@@ -1,6 +1,6 @@
 const lista = document.getElementById('growdevers');
 
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = 'https://growdevers-api-andrei.herokuapp.com/';
 
 axios.get('/growdevers')
    .then(response => {
