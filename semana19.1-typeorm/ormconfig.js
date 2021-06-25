@@ -9,13 +9,15 @@ module.exports = {
   password: process.env.DB_PASSWORD,
   syncrhonize: false,
   logging: false,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    }
+  },
   entities: [
     './src/core/data/database/entities/**/*'
   ],
   cli: {
     entitiesDir: './src/core/data/database/entities',
   }
-  // extras: {
-  //   ssl: false,
-  // }
 }
