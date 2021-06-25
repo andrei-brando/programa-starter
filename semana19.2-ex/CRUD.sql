@@ -19,3 +19,6 @@ create table semana19.estoque (
   quantidade integer not null,
   produto_uid integer not null references semana19.produto (uid)
 );
+
+select *
+from   semana19.categoria
