@@ -8,6 +8,7 @@ export default class CategorieController {
     const response = await db.query('SELECT * FROM semana19.categoria');
 
     return res.status(200).json({
+      success: true,
       data: response
     });
   }
@@ -19,6 +20,7 @@ export default class CategorieController {
     const response = await db.query('SELECT * FROM semana19.categoria WHERE uid = $1', [uid]);
 
     return res.status(200).json({
+      success: true,
       data: response
     });
   }
@@ -27,10 +29,11 @@ export default class CategorieController {
     const { nome, descricao, tag } = req.body;
     const db = await new Database().getConnection();
 
-    const response = await db.query('INSERT INTO semana19.categoria (nome, descricao, tag) values ($1, $2, $3)', [nome, descricao, tag]);
+    const response = await db.query('INSERT INTO semana19.categoria (nome, descricao, tag) values ($1, $2, $3)', [nome, descricao, tag],);
 
     return res.status(200).json({
-      data: response
+      success: true,
+      data: 'Categoria inserida com sucesso',
     });
   }
 
@@ -42,7 +45,8 @@ export default class CategorieController {
     const response = await db.query('UPDATE semana19.categoria SET nome = $1, descricao = $2, tag = $3 WHERE uid = $4', [nome, descricao, tag, uid]);
 
     return res.status(200).json({
-      data: response
+      success: true,
+      data: 'Categoria alterada com sucesso'
     });
   }
 
@@ -53,7 +57,8 @@ export default class CategorieController {
     const response = await db.query('DELETE FROM semana19.categoria WHERE uid = $1', [uid]);
 
     return res.json({
-      data: response
+      success: true,
+      data: 'Categoria deletada'
     });
   }
 }
