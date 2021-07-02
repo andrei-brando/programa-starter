@@ -31,7 +31,7 @@ export class CreateTableProducts1625009325840 implements MigrationInterface {
           isNullable: false,
         },
         {
-          name: 'uid_categorie',
+          name: 'categorie_uid',
           type: 'uuid',
           isNullable: false,
           
@@ -49,7 +49,7 @@ export class CreateTableProducts1625009325840 implements MigrationInterface {
       ],
       foreignKeys: [
         new TableForeignKey({
-          columnNames: ['uid_categorie'],
+          columnNames: ['categorie_uid'],
           referencedColumnNames: ['uid'],
           referencedTableName: 'categories',
         }),

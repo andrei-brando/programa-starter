@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import Database from '../data/connections/Database';
+import CategoryRoutes from '../../features/categories/routers/CategoryRoutes';
+import ProductRoutes from '../../features/products/routers/ProductRoutes';
 
 export default class App {
   readonly #express: express.Application;
@@ -32,7 +33,11 @@ export default class App {
   }
 
   private routes() {
-    // TODO
+    const categoryRoutes = new CategoryRoutes().init();
+    const productRoutes = new ProductRoutes().init();
+
+    this.#express.use(categoryRoutes);
+    this.#express.use(productRoutes);
   }
 
   public start(port: any) {
