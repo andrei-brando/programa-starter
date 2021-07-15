@@ -27,12 +27,12 @@ export class CreateTableProject1626220549215 implements MigrationInterface {
         {
           name: 'start_at',
           type: 'timestamp',
-          isNullable: false,
+          isNullable: true,
         },
         {
           name: 'finish_at',
           type: 'timestamp',
-          isNullable: false,
+          isNullable: true,
         },
         {
           name: 'user_uid',
