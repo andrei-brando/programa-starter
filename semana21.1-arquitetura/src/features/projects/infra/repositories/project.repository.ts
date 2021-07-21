@@ -15,4 +15,17 @@ export class ProjectRepository {
 
     return Object.assign({}, params, project);
   }
+
+  public async getAll(): Promise<Project[]> {
+    const projects = await ProjectEntity.find();
+
+    return projects.map(proj => ({
+      uid: proj.uid,
+      name: proj.name,
+      description: proj.description,
+      startAt: proj.startAt,
+      finishAt: proj.finishAt,
+      userUid: proj.userUid,
+    }));
+  }
 }
