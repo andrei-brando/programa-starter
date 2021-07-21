@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import cors from 'cors';
+import ProjectRoutes from '../../features/projects/presentation/routes/routes';
 
 export default class App {
   readonly #express: express.Application;
@@ -29,8 +30,9 @@ export default class App {
   }
 
   private routes() {
-    // TODO
-    //const routes = Router();
+    const routes = Router();
+
+    new ProjectRoutes().init(routes);
   }
 
   public start(port: number) {
