@@ -4,5 +4,5 @@ export interface User {
   uid: string;
   login: string;
   password?: string;
-  profile: Profile;
+  profile?: Profile;
 }
