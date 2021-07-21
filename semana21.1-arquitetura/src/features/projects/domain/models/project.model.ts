@@ -8,5 +8,5 @@ export interface Project {
   startAt?: Date;
   finishAt?: Date;
   userUid?: string;
-  user: User;
+  user?: User;
 }
