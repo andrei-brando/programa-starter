@@ -19,13 +19,28 @@ export class ProjectRepository {
   public async getAll(): Promise<Project[]> {
     const projects = await ProjectEntity.find();
 
-    return projects.map(proj => ({
-      uid: proj.uid,
-      name: proj.name,
-      description: proj.description,
-      startAt: proj.startAt,
-      finishAt: proj.finishAt,
-      userUid: proj.userUid,
+    return projects.map(project => ({
+      uid: project.uid,
+      name: project.name,
+      description: project.description,
+      startAt: project.startAt,
+      finishAt: project.finishAt,
+      userUid: project.userUid,
     }));
+  }
+
+  public async getOne(uid: string): Promise<Project | null> {
+    const project = await ProjectEntity.findOne(uid);
+
+    if (!project) return null;
+
+    return {
+      uid: project.uid,
+      name: project.name,
+      description: project.description,
+      startAt: project.startAt,
+      finishAt: project.finishAt,
+      userUid: project.userUid,
+    }
   }
 }
