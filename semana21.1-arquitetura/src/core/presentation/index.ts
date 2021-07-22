@@ -1,4 +1,4 @@
-export * from './App';
+export * from './app';
 export * from './models';
 export * from './enums';
 export * from './adapters';

@@ -1,4 +1,4 @@
-import express, { Router } from 'express';
+import express, { Router, Request, Response } from 'express';
 import cors from 'cors';
 import ProjectRoutes from '../../features/projects/presentation/routes/routes';
 
@@ -30,9 +30,19 @@ export default class App {
   }
 
   private routes() {
-    const routes = Router();
+    const router = Router();
 
-    new ProjectRoutes().init(routes);
+    this.#express.get('/', (_: Request, response: Response) => {
+      response.redirect('/api');
+    });
+
+    this.#express.use('/api', router);
+
+    router.get('/', (_: Request, response: Response) => {
+      response.send('API RODANDO');
+    });
+
+    new ProjectRoutes().init(router);
   }
 
   public start(port: number) {

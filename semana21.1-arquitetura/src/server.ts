@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import Database from './core/infra/data/connections/database';
-import App from "./core/presentation/App";
+import App from "./core/presentation/app";
 import dotenv from 'dotenv';
 
 dotenv.config({
