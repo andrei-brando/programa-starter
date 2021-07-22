@@ -4,24 +4,29 @@ import {
     BeforeInsert,
     BeforeUpdate,
     Column,
-    OneToMany,
+    JoinColumn,
     OneToOne,
     PrimaryColumn
 } from "typeorm";
 import { v4 as uuid } from 'uuid';
-import { ProfileDataEntity } from './profile-data.entity';
-import { ProjectEntity } from './project.entity';
+import { UserEntity } from "./user.entity";
 
-@Entity({name: 'users'})
-export class UserEntity extends BaseEntity {
+@Entity({name: 'profile_data'})
+export class ProfileDataEntity extends BaseEntity {
     @PrimaryColumn()
     uid!: string;
 
-    @Column()
-    login!: string;
+    @Column({name: 'user_uid'})
+    userUid!: string;
 
     @Column()
-    password?: string;
+    name!: string;
+
+    @Column()
+    email!: string;
+
+    @Column()
+    cpf!: string;
 
     @Column({name: 'created_at'})
     createdAt!: Date;
@@ -29,11 +34,9 @@ export class UserEntity extends BaseEntity {
     @Column({name: 'updated_at'})
     updatedAt!: Date;
 
-    @OneToOne(_ => ProfileDataEntity, profileData => profileData.user)
-    profileData?: ProfileDataEntity
-
-    @OneToMany(_ => ProjectEntity, project => project.user)
-    projects?: ProjectEntity[];
+    @OneToOne(_ => UserEntity, user => user.profileData)
+    @JoinColumn({name: 'user_uid', referencedColumnName: 'uid'})
+    user?: UserEntity;
 
     @BeforeInsert()
     private beforeInsert() {

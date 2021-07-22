@@ -1,4 +1,4 @@
-import express, { Router, Request, Response } from 'express';
+import express, { Request, Response, Router } from 'express';
 import cors from 'cors';
 import ProjectRoutes from '../../features/projects/presentation/routes/routes';
 
@@ -46,6 +46,8 @@ export default class App {
   }
 
   public start(port: number) {
-    this.#express.listen(port, () => console.log('API rodando'));
+    this.#express.listen(port, () => {
+      console.log('API rodando...');
+    });
   }
 }
