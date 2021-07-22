@@ -13,10 +13,6 @@ export class ProjectController implements MVCController {
 
   public async index(request: HttpRequest): Promise<HttpResponse> {
     try {
-
-      console.log('aqui');
-
-
       const projects = await this.#repository.getAll();
       return ok(projects);
     } catch (error) {
