@@ -15,12 +15,10 @@ export default class ProjectRoutes {
   public init(routes: Router) {
     routes.get(
       '/projects',
-      middlewareAdapter(new ProjectMiddleware()),
       routerMvcAdapter(makeController(), EMVC.INDEX),
     );
     routes.get(
       '/projects/:uid',
-      middlewareAdapter(new ProjectMiddleware()),
       routerMvcAdapter(makeController(), EMVC.SHOW),
     );
     routes.post(
