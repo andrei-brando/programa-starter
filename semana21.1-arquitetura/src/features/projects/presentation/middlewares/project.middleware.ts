@@ -4,19 +4,19 @@ import { RequireFieldsValidator } from "../../../../core/presentation";
 import { Project } from "../../domain/models";
 
 export class ProjectMiddleware {
-    private fields = ['name', 'userUid'];
+  private fields = ['name', 'userUid'];
 
-    async handle(request: HttpRequest): Promise<HttpResponse> {
-        const body: Project = request.body;
+  async handle(request: HttpRequest): Promise<HttpResponse> {
+    const body: Project = request.body;
 
-        for (const field in this.fields) {
-            const error = new RequireFieldsValidator(field).validate(body);
+    for (const field of this.fields) {
+      const error = new RequireFieldsValidator(field).validate(body);
 
-            if (error) {
-                return badRequest(error);
-            }
-        }
-
-        return ok({});
+      if (error) {
+        return badRequest(error);
+      }
     }
+
+    return ok({});
+  }
 }

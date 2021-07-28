@@ -5,10 +5,12 @@ import { ProjectController } from '../controllers';
 import { ProjectMiddleware } from '../middlewares';
 import { MVCController } from '../../../../core/presentation';
 import { ProjectRepository } from '../../infra';
+import { CacheRepository } from '../../infra';
 
 const makeController = (): MVCController => {
   const repository = new ProjectRepository();
-  return new ProjectController(repository);
+  const cache = new CacheRepository();
+  return new ProjectController(repository, cache);
 };
 
 export default class ProjectRoutes {
@@ -22,5 +24,11 @@ export default class ProjectRoutes {
     routes.post('/projects',
       middlewareAdapter(new ProjectMiddleware()),
       routerMvcAdapter(makeController(), EMVC.STORE));
+
+    routes.put('/projects/:uid',
+      routerMvcAdapter(makeController(), EMVC.UPDATE));
+
+    routes.delete('/projects/:uid',
+      routerMvcAdapter(makeController(), EMVC.DELETE));
   }
 }
