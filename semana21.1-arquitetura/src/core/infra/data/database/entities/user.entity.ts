@@ -1,49 +1,49 @@
 import {
-    Entity,
-    BaseEntity,
-    BeforeInsert,
-    BeforeUpdate,
-    Column,
-    OneToMany,
-    OneToOne,
-    PrimaryColumn
+  Entity,
+  BaseEntity,
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  OneToMany,
+  OneToOne,
+  PrimaryColumn
 } from "typeorm";
 import { v4 as uuid } from 'uuid';
 import { ProfileDataEntity } from './profile-data.entity';
 import { ProjectEntity } from './project.entity';
 
-@Entity({name: 'users'})
+@Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {
-    @PrimaryColumn()
-    uid!: string;
+  @PrimaryColumn()
+  uid!: string;
 
-    @Column()
-    login!: string;
+  @Column()
+  login!: string;
 
-    @Column()
-    password?: string;
+  @Column()
+  password?: string;
 
-    @Column({name: 'created_at'})
-    createdAt!: Date;
+  @Column({ name: 'created_at' })
+  createdAt!: Date;
 
-    @Column({name: 'updated_at'})
-    updatedAt!: Date;
+  @Column({ name: 'updated_at' })
+  updatedAt!: Date;
 
-    @OneToOne(_ => ProfileDataEntity, profileData => profileData.user)
-    profileData?: ProfileDataEntity
+  @OneToOne(_ => ProfileDataEntity, profileData => profileData.user)
+  profileData?: ProfileDataEntity
 
-    @OneToMany(_ => ProjectEntity, project => project.user)
-    projects?: ProjectEntity[];
+  @OneToMany(_ => ProjectEntity, project => project.user)
+  projects?: ProjectEntity[];
 
-    @BeforeInsert()
-    private beforeInsert() {
-        this.uid = uuid();
-        this.createdAt = new Date(Date.now());
-        this.updatedAt = new Date(Date.now());
-    }
+  @BeforeInsert()
+  private beforeInsert() {
+    this.uid = uuid();
+    this.createdAt = new Date(Date.now());
+    this.updatedAt = new Date(Date.now());
+  }
 
-    @BeforeUpdate()
-    private beforeUpdate() {
-        this.updatedAt = new Date(Date.now());
-    }
+  @BeforeUpdate()
+  private beforeUpdate() {
+    this.updatedAt = new Date(Date.now());
+  }
 }
