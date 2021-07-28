@@ -6,9 +6,11 @@ import {
   Column,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn
+  PrimaryColumn,
+  OneToMany
 } from "typeorm";
 import { v4 as uuid } from 'uuid';
+import { TaskEntity } from "./task";
 import { UserEntity } from "./user.entity";
 
 @Entity({ name: 'projects' })
@@ -40,6 +42,9 @@ export class ProjectEntity extends BaseEntity {
   @ManyToOne(_ => UserEntity, user => user.projects)
   @JoinColumn({ name: 'user_uid', referencedColumnName: 'uid' })
   user!: UserEntity;
+
+  @OneToMany(_ => TaskEntity, task => task.project)
+  tasks!: TaskEntity[];
 
   @BeforeInsert()
   private beforeInsert() {

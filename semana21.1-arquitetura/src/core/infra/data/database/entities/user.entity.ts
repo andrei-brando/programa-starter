@@ -11,6 +11,7 @@ import {
 import { v4 as uuid } from 'uuid';
 import { ProfileDataEntity } from './profile-data.entity';
 import { ProjectEntity } from './project.entity';
+import { TaskEntity } from "./task";
 
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {
@@ -34,6 +35,12 @@ export class UserEntity extends BaseEntity {
 
   @OneToMany(_ => ProjectEntity, project => project.user)
   projects?: ProjectEntity[];
+
+  @OneToMany(_ => TaskEntity, task => task.userAuthor)
+  taskAuthor!: TaskEntity[];
+
+  @OneToMany(_ => TaskEntity, task => task.userExecuter)
+  taskExecuter!: TaskEntity[];
 
   @BeforeInsert()
   private beforeInsert() {
