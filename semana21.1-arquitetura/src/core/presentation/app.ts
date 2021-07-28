@@ -1,6 +1,7 @@
 import express, { Request, Response, Router } from 'express';
 import cors from 'cors';
 import ProjectRoutes from '../../features/projects/presentation/routes/routes';
+import TaskRoutes from '../../features/tasks/presentation/routes/routes';
 
 export default class App {
   readonly #express: express.Application;
@@ -43,6 +44,7 @@ export default class App {
     });
 
     new ProjectRoutes().init(router);
+    new TaskRoutes().init(router);
   }
 
   public start(port: number) {
