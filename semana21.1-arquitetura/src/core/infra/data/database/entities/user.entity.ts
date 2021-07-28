@@ -11,7 +11,7 @@ import {
 import { v4 as uuid } from 'uuid';
 import { ProfileDataEntity } from './profile-data.entity';
 import { ProjectEntity } from './project.entity';
-import { TaskEntity } from "./task";
+import { TaskEntity } from "./task.entity";
 
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {

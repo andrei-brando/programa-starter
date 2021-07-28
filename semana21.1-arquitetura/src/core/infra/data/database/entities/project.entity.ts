@@ -10,7 +10,7 @@ import {
   OneToMany
 } from "typeorm";
 import { v4 as uuid } from 'uuid';
-import { TaskEntity } from "./task";
+import { TaskEntity } from "./task.entity";
 import { UserEntity } from "./user.entity";
 
 @Entity({ name: 'projects' })
