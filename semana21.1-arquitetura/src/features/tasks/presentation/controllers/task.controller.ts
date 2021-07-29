@@ -9,11 +9,25 @@ export class TaskController implements MVCController {
   }
 
   public async index(request: HttpRequest): Promise<HttpResponse> {
-    throw new Error("Method not implemented.");
+    try {
+      const tasks = await this.#repository.findAll();
+
+      return ok(tasks);
+    } catch (error) {
+      return serverError();
+    }
   }
 
   public async show(request: HttpRequest): Promise<HttpResponse> {
-    throw new Error("Method not implemented.");
+    const { uid } = request.params;
+
+    try {
+      const task = await this.#repository.findOne(uid);
+
+      return ok(task);
+    } catch (error) {
+      return serverError();
+    }
   }
 
   public async store(request: HttpRequest): Promise<HttpResponse> {
@@ -27,10 +41,26 @@ export class TaskController implements MVCController {
   }
 
   public async update(request: HttpRequest): Promise<HttpResponse> {
-    throw new Error("Method not implemented.");
+    const { uid } = request.params;
+
+    try {
+      await this.#repository.update(uid, request.body);
+
+      return ok(null);
+    } catch (error) {
+      return serverError();
+    }
   }
 
   public async delete(request: HttpRequest): Promise<HttpResponse> {
-    throw new Error("Method not implemented.");
+    const { uid } = request.params;
+
+    try {
+      await this.#repository.delete(uid);
+
+      return ok(null);
+    } catch (error) {
+      return serverError();
+    }
   }
 }
