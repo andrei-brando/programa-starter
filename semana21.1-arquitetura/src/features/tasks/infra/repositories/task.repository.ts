@@ -4,7 +4,6 @@ import { Task } from "../../domain";
 export class TaskRepository {
   public async findAll(): Promise<Task[] | null> {
     const tasks = await TaskEntity.find();
-
     if (!tasks) return null;
 
     return tasks;
@@ -19,8 +18,6 @@ export class TaskRepository {
   }
 
   public async create(data: Task): Promise<Task> {
-    // const { title, description, authorUid, executerUid, projectUid } = data;
-
     const task = await TaskEntity.create({
       ...data,
     }).save();
