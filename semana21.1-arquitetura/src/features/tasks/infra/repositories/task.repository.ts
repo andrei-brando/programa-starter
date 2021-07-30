@@ -10,7 +10,9 @@ export class TaskRepository {
   }
 
   public async findOne(uid: string): Promise<Task | null> {
-    const task = await TaskEntity.findOne(uid);
+    const task = await TaskEntity.findOne(uid, {
+      relations: ['userAuthor', 'userExecuter', 'project'],
+    });
 
     if (!task) return null;
 
