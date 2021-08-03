@@ -47,6 +47,7 @@ export default class App {
     new TaskRoutes().init(router);
   }
 
+  /* istanbul ignore next */
   public start(port: number) {
     this.#express.listen(port, () => {
       console.log('API rodando...');
