@@ -38,6 +38,13 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "migration:run": "ts-node --transpile-only node_modules/typeorm/cli.js migration:run",
-    "migration:revert": "ts-node --transpile-only node_modules/typeorm/cli.js migration:revert"
+    "migration:revert": "ts-node --transpile-only node_modules/typeorm/cli.js migration:revert",
+    "migration:run:test": "cross-env NODE_ENV=test yarn ts-node-dev ./node_modules/typeorm/cli.js migration:run",
+    "test:setup": "yarn rimraf testedb.sql && yarn migration:run:test",
+    "test": "yarn test:setup && cross-env NODE_ENV=test yarn jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "yarn test:setup && cross-env NODE_ENV=test yarn jest --passWithNoTests --runInBand",
+    "test:unit": "yarn teste --watchAll -c jest-unit.config.js",
+    "test:integration": "yarn teste --watchAll -c jest-integration.config.js",
+    "test:coverage": "yarn test --coverage"
   }
 }
