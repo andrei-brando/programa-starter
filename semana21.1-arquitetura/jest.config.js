@@ -4,7 +4,7 @@ module.exports = {
   // diretório onde será gerado os relatórios de cobertura de testes
   coverageDirectory: 'coverage',
   // diretórios que vão ser ignorados pelo coverage
-  coveragePathIgnorePatters: [
+  coveragePathIgnorePatterns: [
     '\\\\node_modules\\\\',
     '<rootDir>/src/core/infra/data/database/migrations',
   ],
