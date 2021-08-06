@@ -33,7 +33,7 @@ export class ProjectRepository {
     const project = await ProjectEntity.findOne(uid);
 
     if (!project) {
-      return null
+      return null;
     }
 
     return {

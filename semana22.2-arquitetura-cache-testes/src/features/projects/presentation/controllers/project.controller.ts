@@ -13,7 +13,7 @@ export class ProjectController implements MVCController {
     this.#cache = cache;
   }
 
-  public async index(request: HttpRequest): Promise<HttpResponse> {
+  public async index(): Promise<HttpResponse> {
     try {
       const cache = await this.#cache.get('project:all');
 
@@ -22,29 +22,28 @@ export class ProjectController implements MVCController {
       }
 
       const projects = await this.#repository.getAll();
+
+      if (!projects || projects.length <= 0) return notFound();
+
       await this.#cache.set('project:all', projects);
 
       return ok(projects);
     } catch (error) {
-      console.log(error);
-      console.log(error.message);
-
       return serverError();
     }
   }
 
   public async show(request: HttpRequest): Promise<HttpResponse> {
+    const { uid } = request.params;
     try {
-      const { uid } = request.params;
-
-      const cache = await this.#cache.get(`projects:${uid}`);
+      const cache = await this.#cache.get(`project:${uid}`);
 
       if (cache) {
         return ok(cache);
       }
 
       const project = await this.#repository.getOne(uid);
-      await this.#cache.set(`projects:${uid}`, project);
+      await this.#cache.set(`project:${uid}`, project);
 
       if (!project) {
         return notFound();
@@ -59,6 +58,10 @@ export class ProjectController implements MVCController {
   public async store(request: HttpRequest): Promise<HttpResponse> {
     try {
       const project = await this.#repository.create(request.body);
+
+      await this.#cache.set(`project:${project.uid}`, project);
+      await this.#cache.delete('project:all');
+
       return ok(project);
     } catch (error) {
       return serverError();

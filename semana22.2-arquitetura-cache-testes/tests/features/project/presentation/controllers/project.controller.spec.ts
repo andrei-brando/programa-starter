@@ -30,7 +30,7 @@ const makeRequestShow = (): HttpRequest => ({
   }
 });
 
-const makeRequestResult = (): Project => ({
+const makeResult = (): Project => ({
   uid: 'any_uid',
   name: 'any_name',
   userUid: 'any_uid',
@@ -50,10 +50,6 @@ describe('Project Controller', () => {
   });
 
   describe('Store', () => {
-    // com dados corretos
-    // com dados incorretos
-    // com dados com tamanho x
-    // com usuário que não existe
     test('Should return code 500 when throw any exception', async () => {
       jest.spyOn(ProjectRepository.prototype, 'create')
         .mockRejectedValue(new Error());
@@ -75,12 +71,92 @@ describe('Project Controller', () => {
 
     test('Should return code 200 when valid data was provided', async () => {
       jest.spyOn(ProjectRepository.prototype, 'create')
-        .mockResolvedValue(makeRequestResult());
+        .mockResolvedValue(makeResult());
 
       const sut = makeSut();
       const result = await sut.store(makeRequestStore());
 
-      expect(result).toEqual(ok(makeRequestResult()));
+      expect(result).toEqual(ok(makeResult()));
     });
+
+    test('Should call CacheRepository when pass correct values', async () => {
+      jest.spyOn(ProjectRepository.prototype, 'create')
+        .mockResolvedValue(makeResult());
+
+      const setSpy = jest.spyOn(CacheRepository.prototype, 'set');
+      const delSpy = jest.spyOn(CacheRepository.prototype, 'delete');
+
+      const sut = makeSut();
+      await sut.store(makeRequestStore());
+
+      expect(setSpy).toHaveBeenCalledWith('project:any_uid', makeResult());
+      expect(delSpy).toHaveBeenCalledWith('project:all');
+    });
+  });
+
+  describe('Index', () => {
+    test('Should return code 500 when throw any exception', async () => {
+      jest.spyOn(CacheRepository.prototype, 'get')
+        .mockRejectedValue(new Error());
+
+      const sut = makeSut();
+      const result = await sut.index();
+
+      expect(result).toEqual(serverError());
+    });
+
+    test('Should call CacheRepository when pass correct values', async () => {
+      jest.spyOn(ProjectRepository.prototype, 'getAll')
+        .mockResolvedValue([makeResult()]);
+
+      const getSpy = jest.spyOn(CacheRepository.prototype, 'get')
+        .mockResolvedValue(null);
+      const setSpy = jest.spyOn(CacheRepository.prototype, 'set')
+        .mockResolvedValue(null);
+
+      const sut = makeSut();
+      await sut.index();
+
+      expect(getSpy).toHaveBeenCalledWith('project:all');
+      expect(setSpy).toHaveBeenCalledWith('project:all', [makeResult()]);
+    });
+
+    test('Should return code 200 when cache has any project', async () => {
+      jest.spyOn(CacheRepository.prototype, 'get')
+        .mockResolvedValue([makeResult()]);
+
+      const sut = makeSut();
+      const result = await sut.index();
+
+      expect(result).toEqual(ok([makeResult()]));
+    });
+
+    test('Should return code 404 when no project is found', async () => {
+      jest.spyOn(CacheRepository.prototype, 'get')
+        .mockResolvedValue(null);
+      jest.spyOn(ProjectRepository.prototype, 'getAll')
+        .mockResolvedValue([]);
+
+      const sut = makeSut();
+      const result = await sut.index();
+
+      expect(result).toEqual(notFound());
+    });
+
+    test('Should return code 200 when repository has any projects', async () => {
+      jest.spyOn(CacheRepository.prototype, 'get')
+        .mockResolvedValue(null);
+      jest.spyOn(ProjectRepository.prototype, 'getAll')
+        .mockResolvedValue([makeResult()]);
+
+      const sut = makeSut();
+      const result = await sut.index();
+
+      expect(result).toEqual(ok([makeResult()]));
+    });
+  });
+
+  describe('Show', () => {
+    // tema de casa
   });
 });
