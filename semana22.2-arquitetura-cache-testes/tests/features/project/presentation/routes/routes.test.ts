@@ -52,5 +52,21 @@ describe('Project routes', () => {
 
   afterAll(async () => {
     await new Database().disconnectDatabase();
-  })
+  });
+
+  describe('/post projects', () => {
+    test('Should return code 400 when save project with invalid name', async () => {
+      const user = await makeUser();
+
+      await request(server).post('/projects')
+        .send({
+          description: 'any_description',
+          startAt: new Date().toLocaleDateString(),
+          fisishAt: new Date().toLocaleDateString()
+        })
+        .expect(400, { error: 'Missing param: name' });
+    });
+
+    // tema de casa, outros testes na rota, pelo menos o post
+  });
 });
