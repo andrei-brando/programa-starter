@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { EMVC } from '../../../../core/presentation';
 import { middlewareAdapter, routerMvcAdapter } from '../../../../core/presentation';
 import { ProjectController } from '../controllers';
-import { ProjectMiddleware } from '../middlewares';
+import { ProjectMiddleware, UserExistsMiddleware } from '../middlewares';
 import { MVCController } from '../../../../core/presentation';
 import { ProjectRepository } from '../../infra';
 import { CacheRepository } from '../../infra';
@@ -22,7 +22,10 @@ export default class ProjectRoutes {
       routerMvcAdapter(makeController(), EMVC.SHOW));
 
     routes.post('/projects',
-      middlewareAdapter(new ProjectMiddleware()),
+      [
+        middlewareAdapter(new UserExistsMiddleware()),
+        middlewareAdapter(new ProjectMiddleware())
+      ],
       routerMvcAdapter(makeController(), EMVC.STORE));
 
     routes.put('/projects/:uid',

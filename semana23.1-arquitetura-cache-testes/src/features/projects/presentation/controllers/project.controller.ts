@@ -1,8 +1,9 @@
-import { HttpRequest, HttpResponse } from '../../../../core/presentation';
+import { badRequest, HttpRequest, HttpResponse, InvalidParamError } from '../../../../core/presentation';
 import { notFound, ok, serverError } from '../../../../core/presentation';
 import { MVCController } from '../../../../core/presentation';
 import { ProjectRepository } from '../../infra';
 import { CacheRepository } from '../../infra';
+import { UserEntity } from '../../infra';
 
 export class ProjectController implements MVCController {
   readonly #repository: ProjectRepository;

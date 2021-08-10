@@ -29,6 +29,12 @@ const makeProject = async (): Promise<ProjectEntity> => {
   }).save();
 }
 
+const makeResult = (): Project => ({
+  uid: 'any_uid',
+  name: 'any_name',
+  userUid: 'any_uid',
+});
+
 describe('Project routes', () => {
   const server = new App().server;
 
@@ -62,11 +68,39 @@ describe('Project routes', () => {
         .send({
           description: 'any_description',
           startAt: new Date().toLocaleDateString(),
-          fisishAt: new Date().toLocaleDateString()
+          fisishAt: new Date().toLocaleDateString(),
+          userUid: user.uid,
         })
         .expect(400, { error: 'Missing param: name' });
     });
 
-    // tema de casa, outros testes na rota, pelo menos o post
+    test('Should return code 200 when save a new project', async () => {
+      const user = await makeUser();
+
+      await request(server).post('/projects')
+        .send({
+          name: 'any_name',
+          description: 'any_description',
+          startAt: new Date().toLocaleDateString(),
+          finishAt: new Date().toLocaleDateString(),
+          userUid: user.uid,
+        })
+        .expect(200)
+        .expect(request => {
+          expect(request.body.userUid).toBe(user.uid);
+        });
+    });
+
+    test('Should return code 400 when userUid is invalid', async () => {
+      await request(server).post('/projects')
+        .send({
+          name: 'any_name',
+          description: 'any_description',
+          startAt: new Date().toLocaleDateString(),
+          finishAt: new Date().toLocaleDateString(),
+          userUid: 'fake_uid',
+        })
+        .expect(400, { error: 'Invalid param: userUid' });
+    });
   });
 });
