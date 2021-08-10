@@ -23,8 +23,8 @@ export default class ProjectRoutes {
 
     routes.post('/projects',
       [
+        middlewareAdapter(new ProjectMiddleware()),
         middlewareAdapter(new UserExistsMiddleware()),
-        middlewareAdapter(new ProjectMiddleware())
       ],
       routerMvcAdapter(makeController(), EMVC.STORE));
 
