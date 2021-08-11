@@ -3,7 +3,6 @@ import { HttpRequest, HttpResponse } from "../../../../core/presentation";
 import { Project } from "../../domain/models";
 import { UserRepository } from "../../infra";
 
-
 export class UserExistsMiddleware {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const body: Project = request.body;
