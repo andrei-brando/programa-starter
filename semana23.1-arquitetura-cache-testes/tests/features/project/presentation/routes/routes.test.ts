@@ -115,4 +115,16 @@ describe('Project routes', () => {
         .expect(200);
     });
   });
+
+  describe('/Get projects/:uid', () => {
+    test('Should return 200 code when has any project by uid', async () => {
+      const project = await makeProject();
+
+      jest.spyOn(ProjectRepository.prototype, 'getOne')
+        .mockResolvedValue(project);
+
+      await request(server).get(`/projects/${project.uid}`)
+        .expect(200);
+    });
+  });
 });
