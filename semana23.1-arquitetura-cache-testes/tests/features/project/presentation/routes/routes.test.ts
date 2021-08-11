@@ -8,10 +8,11 @@ import {
   UserEntity,
 } from '../../../../../src/core/infra';
 import App from '../../../../../src/core/presentation/app';
-import { Project } from '../../../../../src/features/projects/domain/models';
 import ProjectRoutes from '../../../../../src/features/projects/presentation/routes/routes';
+import { ProjectRepository } from '../../../../../src/features/projects/infra';
 
 jest.mock('ioredis');
+jest.mock('../../../../../src/features/projects/infra/repositories/project.repository.ts');
 
 const makeUser = async (): Promise<UserEntity> => {
   return UserEntity.create({
@@ -25,15 +26,12 @@ const makeProject = async (): Promise<ProjectEntity> => {
 
   return ProjectEntity.create({
     name: 'any_name',
+    description: 'any_description',
+    startAt: new Date().toLocaleDateString(),
+    finishAt: new Date().toLocaleDateString(),
     userUid: user.uid,
   }).save();
 }
-
-const makeResult = (): Project => ({
-  uid: 'any_uid',
-  name: 'any_name',
-  userUid: 'any_uid',
-});
 
 describe('Project routes', () => {
   const server = new App().server;
@@ -75,7 +73,10 @@ describe('Project routes', () => {
     });
 
     test('Should return code 200 when save a new project', async () => {
-      const user = await makeUser();
+      const project = await makeProject();
+
+      jest.spyOn(ProjectRepository.prototype, 'create')
+        .mockResolvedValue(project);
 
       await request(server).post('/projects')
         .send({
@@ -83,11 +84,10 @@ describe('Project routes', () => {
           description: 'any_description',
           startAt: new Date().toLocaleDateString(),
           finishAt: new Date().toLocaleDateString(),
-          userUid: user.uid,
-        })
-        .expect(200)
+          userUid: project.userUid,
+        }).expect(200)
         .expect(request => {
-          expect(request.body.userUid).toBe(user.uid);
+          expect(request.body.userUid).toBe(project.userUid);
         });
     });
 
@@ -101,6 +101,18 @@ describe('Project routes', () => {
           userUid: 'fake_uid',
         })
         .expect(400, { error: 'Invalid param: userUid' });
+    });
+  });
+
+  describe('/Get projects', () => {
+    test('Should return 200 code when has any project', async () => {
+      const project = await makeProject();
+
+      jest.spyOn(ProjectRepository.prototype, 'getAll')
+        .mockResolvedValue([project]);
+
+      await request(server).get('/projects')
+        .expect(200);
     });
   });
 });
