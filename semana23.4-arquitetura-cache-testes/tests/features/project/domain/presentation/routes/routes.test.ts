@@ -6,10 +6,10 @@ import {
   Database,
   ProjectEntity,
   UserEntity,
-} from '../../../../../src/core/infra';
-import App from '../../../../../src/core/presentation/app';
-import ProjectRoutes from '../../../../../src/features/projects/presentation/routes/routes';
-import { ProjectRepository } from '../../../../../src/features/projects/infra';
+} from '../../../../../../src/core/infra';
+import App from '../../../../../../src/core/presentation/app';
+import ProjectRoutes from '../../../../../../src/features/projects/presentation/routes/routes';
+import { ProjectRepository } from '../../../../../../src/features/projects/infra';
 
 jest.mock('ioredis');
 jest.mock('../../../../../src/features/projects/infra/repositories/project.repository.ts');
@@ -124,7 +124,10 @@ describe('Project routes', () => {
         .mockResolvedValue(project);
 
       await request(server).get(`/projects/${project.uid}`)
-        .expect(200);
+        .expect(200)
+        .expect(request => {
+          expect(request.body.uid).toEqual(project.uid);
+        });
     });
   });
 });
