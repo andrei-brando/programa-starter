@@ -1,6 +1,10 @@
 import React from "react";
-import Home from "./pages/Home";
+import Routes from "./config/routes";
 
 export default function App() {
-  return <Home name="Andrei Brando" idade={23} />;
+  return (
+    <React.Fragment>
+      <Routes />
+    </React.Fragment>
+  );
 }
