@@ -10,6 +10,7 @@ export default function Card(props) {
   function onClick(event) {
     event.preventDefault();
     setStacks(arr => [...arr, stack]);
+    setStack('');
   }
 
   return (
