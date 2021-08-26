@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppFeaturesComponentStyle } from './style';
-import 'images'
+// import 'images'
 
 export default function AppFeatures() {
     return (
