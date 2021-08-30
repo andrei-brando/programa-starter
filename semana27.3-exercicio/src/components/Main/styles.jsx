@@ -6,9 +6,12 @@ export const MainStyle = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  .teste {
+  .section1 {
+    height: 300px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
+    background-color: #fcf8f8;
   }
 `;
