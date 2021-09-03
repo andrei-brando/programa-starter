@@ -23,6 +23,10 @@ export default function Header() {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
+
+          <li>
+            <Link to="/components">Components</Link>
+          </li>
         </ul>
       </nav>
     </header>

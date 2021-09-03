@@ -1,9 +1,9 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { ptBR } from '@material-ui/core/locale';
 
 import 'typeface-montserrat';
 
-export default createMuiTheme(
+export default createTheme(
   {
     palette: {
       primary: {
