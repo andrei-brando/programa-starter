@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-constant-condition */
 import {
   useState,
   useEffect,

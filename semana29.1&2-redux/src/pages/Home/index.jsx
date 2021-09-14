@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { Grid, Box, Typography } from '@material-ui/core';
 import News from '../../components/News';
 import useStyles from './styles';
+import Pai from '../../components/Pai';
 
 export default function Home() {
   const classes = useStyles();
@@ -17,6 +18,17 @@ export default function Home() {
     <Grid container>
       <Grid item xs={12}>
         <Typography variant="h3">Home Page</Typography>
+        <hr />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Pai />
+        <br />
+        <br />
+        <br />
+        <br />
+        <hr />
         <p>
           Cras ultricies ligula sed magna dictum porta. Vivamus magna justo,
           lacinia eget consectetur sed, convallis at tellus. Mauris blandit
