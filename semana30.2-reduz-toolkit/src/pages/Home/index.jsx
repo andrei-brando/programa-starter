@@ -3,13 +3,15 @@ import { Typography } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { decrease, increase } from '../../store/modules/counter';
-import { saveCard, removeCard } from '../../store/modules/cards';
+import { saveCard, selectAll, selectIds } from '../../store/modules/cards';
 
 export default function Home() {
   const counter = useSelector((state) => state.counter);
-  const cards = useSelector((state) => state.cards);
+  const cards = useSelector(selectIds);
   const dispatch = useDispatch();
   const [value, setValue] = useState(1);
+
+  console.log(cards);
 
   useEffect(() => {
     const card = {

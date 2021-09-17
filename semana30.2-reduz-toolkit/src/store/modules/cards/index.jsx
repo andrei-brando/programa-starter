@@ -4,6 +4,10 @@ const cardAdapter = createEntityAdapter({
   selectId: (card) => card.id,
 });
 
+export const { selectAll, selectIds } = cardAdapter.getSelectors(
+  (state) => state.cards
+);
+
 const slice = createSlice({
   name: 'cards',
   initialState: cardAdapter.getInitialState(),
