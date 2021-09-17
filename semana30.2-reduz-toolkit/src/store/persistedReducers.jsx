@@ -7,7 +7,7 @@ export default (reducers) => {
     {
       key: 'counter-example',
       storage,
-      whitelist: ['counter'],
+      whitelist: ['counter', 'cards'],
     },
     reducers
   );
