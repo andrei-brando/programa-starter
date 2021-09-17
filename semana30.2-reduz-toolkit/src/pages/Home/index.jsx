@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typography } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { decrease, increase } from './../../store/modules/counter/actions';
+import { decrease, increase } from '../../store/modules/counter';
 
 export default function Home() {
   const counter = useSelector((state) => state.counter);
