@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { decrease, increase } from '../../store/modules/counter';
 import { saveCard, selectAll, selectIds } from '../../store/modules/cards';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const counter = useSelector((state) => state.counter);
@@ -42,6 +43,7 @@ export default function Home() {
       />
       <button onClick={onIncrease}>+</button>
       <button onClick={onDecrease}>-</button>
+      <Link to="/soccer">Soccer</Link>
     </React.Fragment>
   );
 }
