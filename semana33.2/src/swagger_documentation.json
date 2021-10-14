@@ -29,9 +29,29 @@
     "/users": {
       "get": {
         "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "description": "Listar Usuários",
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "body",
+            "description": "Nome do usuário",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Caso de sucesso",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       },
       "post": {
         "tags": [],

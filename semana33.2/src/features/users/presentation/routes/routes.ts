@@ -14,8 +14,20 @@ export default class UserRoutes {
       `/users`,
       controller.index
       /**
-       * #swagger.tags = ['Users]
-       */
+        #swagger.tags = ['Users]
+        #swagger.description = 'Listar Usuários'
+        #swagger.security = [{Bearer: []}]
+        #swagger.parameters['nome'] = {
+           in: 'body',
+           description: 'Nome do usuário',
+           required: false,
+           type: 'string'
+        }
+        #swagger.responses[200] = {
+           description: 'Caso de sucesso',
+           schema: { $ref: '#/definitions/User' }
+        }
+      */
     );
 
     routes.get(
