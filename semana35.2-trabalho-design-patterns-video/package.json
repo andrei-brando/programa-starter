@@ -1,0 +1,14 @@
+{
+  "name": "semana35.2-trabalho-design-patterns-video",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^16.11.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.4"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts"
+  }
+}
