@@ -9,14 +9,14 @@ Preciso que no meu programa cadastre uma categoria para meus produtos caso ela a
     - Falha
       - Login inválido
       - Senha inválida
-      - E-mail é inválido
+      - E-mail é inválido**
       - Erro no servidor (conexão, banco, etc)
 
 # Cadastrar categoria (nome, descrição)
 
     - Sucesso
-      - Com dados válidos (nome e descrição preenchidos, e logado)
-      - Com dados válidos, mas sem descrição
+      OK - Com dados válidos (nome e descrição preenchidos, e logado)
+      OK - Com dados válidos, mas sem descrição
     - Falha
       - Caso ela já exista
       - Nome mínimo de 10 caracteres e máximo 100 caracteres
@@ -26,4 +26,11 @@ Preciso que no meu programa cadastre uma categoria para meus produtos caso ela a
 
 # Excluir
 
-    - Preciso estar logado
+    - Sucesso
+      - Com dados válidos
+    - Falha
+      - ID/UID que não exista no banco
+      - ID/UID em branco**
+      - ID/UID em formato inválido**
+      - Preciso estar logado
+      - Erro no servidor (conexão, banco, etc)
