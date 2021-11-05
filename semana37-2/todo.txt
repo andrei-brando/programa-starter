@@ -1,0 +1,35 @@
+Preciso que no meu programa cadastre uma categoria 
+para meus produtos caso ela ainda não exista, 
+este cadastro deve ter um nome e uma descrição mínima de 10 caracteres. 
+Para poder cadastrar ou excluir um categoria é preciso estar logado.
+
+- POST /category
+    - 200 - { mensagem: 'Cadastrado com sucesso', category }
+    - 500 - { mensagem: 'Ocorreu um erro, tente novamente mais tarde', track: '' }
+    - 400 - { mensagem: 'Dados inválidos', errors: [{field: 'name', error: required}] }
+    - 401 - { mensagem: 'Usuário não está logado' }
+    - schema (body/json): { name: string, description: string }
+- DELETE /category/:id
+    - 204 - {}
+    - 500 - { mensagem: 'Ocorreu um erro, tente novamente mais tarde', track: '' }
+    - 400 - { mensagem: 'Id inválido' }
+    - 404 - { mensagem: 'Categoria não encontrada' }
+    - 401 - { mensagem: 'Usuário não está logado' }
+    - schema (param) { id: int }
+- GET /category
+    - 200 - { categories: [], page: 1, totalPage: 10 }
+    - 500 - { mensagem: 'Ocorreu um erro, tente novamente mais tarde', track: '' }
+    - 400 - { mensagem: 'Página inválida' }
+    - 401 - { mensagem: 'Usuário não está logado' }
+    - schema (query): { page: int }
+- GET /category/:id
+    - 200 - { category }
+    - 500 - { mensagem: 'Ocorreu um erro, tente novamente mais tarde', track: '' }
+    - 400 - { mensagem: 'ID inválido' }
+    - 401 - { mensagem: 'Usuário não está logado' }
+    - schema (param) { id: int }
+- POST /login 
+    - 200 - { user, token }
+    - 500 - { mensagem: 'Ocorreu um erro, tente novamente mais tarde', track: '' }
+    - 400 - { mensagem: 'Usuário ou senha inválido' }
+    - schema (body): { login: string, password: string }
